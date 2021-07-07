@@ -75,7 +75,7 @@ Almightree.prototype.search = function(fullTerm, undoable) {
 
 Almightree.prototype.filterTerm = function(term) {
     var hits = this.tree.find("li li").filter(function() {
-        return $(this).css("display") != "none" && $(this).children(".node").filter(":containsCI("+term+")").size() > 0;
+        return $(this).css("display") != "none" && $(this).children(".node").filter(":containsCI("+term+")").length;
     })
     this.tree.find("li li").css("display", "none");
 
@@ -92,9 +92,9 @@ Almightree.prototype.update = function() {
     while(visibleChildren == 1 && !containsHighlight) {
         visibleChildren = li.children("ul").children().filter(function() {
             return $(this).css("display") != "none";
-        }).size();
+        }).length;
         if (visibleChildren == 1) {
-            if (li.children(".node").find(".highlight").size() > 0) {
+            if (li.children(".node").find(".highlight").length) {
                 break;
             }
             li = li.children("ul").children("li").filter(function() {
@@ -108,7 +108,7 @@ Almightree.prototype.update = function() {
     li.find("li.foldable").each(function() {
         if ($(this).children("ul").children("li").filter(function() {
             return $(this).css("display") == "none";
-            }).size() > 0) {
+            }).length) {
             $(this).addClass("folded");
         }
     });
@@ -180,7 +180,7 @@ Almightree.prototype.initTree = function() {
         $(this).children(".node").prepend('<span class="zoom">⚫</span>');
 
         // give li's with children the "foldable" class
-        if ($(this).children("ul").size() > 0) {
+        if ($(this).children("ul").length) {
             $(this).addClass("foldable");
         }
 
