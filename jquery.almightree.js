@@ -37,7 +37,6 @@ Almightree.prototype.search = function(fullTerm, undoable) {
             window.history.replaceState("", "", newPath);
         }
     }
-
     fullTerm = fullTerm.replace(/-/g, "[^a-z0-9üöäßÜÖÄẞ]*");
 
     this.tree.highlightRegex();
